@@ -11,7 +11,9 @@ import authRoutes from "./routes/auth.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import orderRoutes from "./routes/order.routes.js";
-import paymentRoutes from "./routes/payment.routes.js";   // ← ADD
+import paymentRoutes from "./routes/payment.routes.js";
+import adminRoutes from "./routes/admin.routes.js";     // ← ADD
+import reviewRoutes from "./routes/review.routes.js";   // ← ADD
 
 const app = express();
 
@@ -50,7 +52,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/orders", orderRoutes);
-app.use("/api/v1/payments", paymentRoutes);   // ← ADD
+app.use("/api/v1/payments", paymentRoutes);
+app.use("/api/v1/admin", adminRoutes);       // ← ADD
+app.use("/api/v1/reviews", reviewRoutes);     // ← ADD
 
 // ========================
 //    ERROR HANDLER
