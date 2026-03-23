@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { getProfile } from "./redux/slices/authSlice.js";
 
-// Layout Components
+// Layout
 import Navbar from "./components/layout/Navbar.jsx";
 import Footer from "./components/layout/Footer.jsx";
 
@@ -14,11 +14,12 @@ import Footer from "./components/layout/Footer.jsx";
 import Home from "./pages/product/Home.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
+import ProductList from "./pages/product/ProductList.jsx";       // ← ADD
+import ProductDetail from "./pages/product/ProductDetail.jsx";   // ← ADD
 
 const App = () => {
   const dispatch = useDispatch();
 
-  // On app load → check if user is already logged in (has valid cookie)
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);
@@ -26,7 +27,6 @@ const App = () => {
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-50">
-        {/* Toast Notifications */}
         <Toaster
           position="top-center"
           toastOptions={{
@@ -35,19 +35,19 @@ const App = () => {
           }}
         />
 
-        {/* Navbar — shows on ALL pages */}
         <Navbar />
 
-        {/* Main Content — changes based on URL */}
         <main className="flex-grow">
           <Routes>
+            {/* Public Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/products" element={<ProductList />} />        {/* ← ADD */}
+            <Route path="/product/:id" element={<ProductDetail />} />   {/* ← ADD */}
           </Routes>
         </main>
 
-        {/* Footer — shows on ALL pages */}
         <Footer />
       </div>
     </Router>
